@@ -1,16 +1,59 @@
-body {
-  font-family: 'Poppins', sans-serif;
+/* Navbar and Hero Section - now black */
+.custom-navbar {
+  background-color: #000; /* black */
 }
 
-h1 {
-  font-weight: 700;
+.hero {
+  background-color: #000; /* black */
 }
 
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Navbar links */
+.navbar-nav .nav-link {
+  color: #fff !important;
+  font-weight: 500;
+}
+.navbar-nav .nav-link:hover {
+  color: #ff6b6b !important; /* slight accent on hover */
+  text-decoration: underline;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+/* Featured Products Heading */
+h2.fw-bold.text-primary {
+  background: linear-gradient(90deg, #ff4d4d, #ffaf40, #1dd1a1, #48dbfb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Product cards */
+#product-container .card {
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+#product-container .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+/* Add to Cart Button - now gradient like old header */
+.add-to-cart-btn {
+  background: linear-gradient(90deg, #ff4d4d, #ffaf40, #1dd1a1, #48dbfb);
+  background-size: 300% 300%;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease, background-position 0.5s ease;
+}
+.add-to-cart-btn:hover {
+  background-position: 100% 50%;
+  transform: scale(1.05);
+}
+
+/* Footer */
+.footer .social-icons a {
+  transition: all 0.3s ease;
+}
+.footer .social-icons a:hover {
+  color: #1dd1a1;
+  transform: scale(1.2);
 }

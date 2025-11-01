@@ -1,40 +1,20 @@
-const Api = "https://fakestoreapi.com/products";
+let api = "https://fakestoreapi.com/products";
 
-async function getApi() {
-  try {
-    const response = await fetch(Api);
-    const data = await response.json();
-    console.log(data);
-    displayProducts(data);
-  } catch (error) {
-    console.error("Error fetching API:", error);
-  }
-}
-
-function displayProducts(products) {
-  const container = document.getElementById("productContainer");
-  container.innerHTML = ""; // Clear old data
-
-  products.forEach((item) => {
-    const card = document.createElement("div");
-    card.classList.add("col-md-4", "col-lg-3", "mb-4");
-
-    card.innerHTML = `
-      <div class="card h-100 shadow-sm">
-        <img src="${item.image}" class="card-img-top p-3" alt="${item.title}" style="height: 250px; object-fit: contain;">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">${item.title.slice(0, 40)}...</h5>
-          <p class="card-text text-muted">${item.description.slice(0, 80)}...</p>
-          <div class="mt-auto">
-            <h6 class="text-success mb-2">$${item.price}</h6>
-            <button class="btn btn-primary w-100">Buy Now</button>
+fetch(api)
+  .then(res => res.json())
+  .then(products => {
+    let container = document.getElementById("product-container");
+    container.innerHTML = products.map(p => `
+      <div class="col-md-3 col-sm-6">
+        <div class="card h-100">
+          <img src="${p.image}" class="card-img-top p-3" style="height:200px; object-fit:contain;" alt="${p.title}">
+          <div class="card-body d-flex flex-column">
+            <h6 class="card-title">${p.title.slice(0, 25)}...</h6>
+            <p class="text-success fw-bold mb-3">$${p.price}</p>
+            <button class="btn add-to-cart-btn mt-auto"><i class="fas fa-cart-plus me-2"></i>Add to Cart</button>
           </div>
         </div>
       </div>
-    `;
-
-    container.appendChild(card);
-  });
-}
-
-getApi();
+    `).join('');
+  })
+  .catch(err => console.error(err));
